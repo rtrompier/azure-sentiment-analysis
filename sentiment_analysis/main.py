@@ -7,7 +7,7 @@ from .huggingface import HuggingFace
 hf = HuggingFace('nlptown/bert-base-multilingual-uncased-sentiment')
 
 # Main entry point 
-def main(req: func.HttpRequest) -> func.HttpResponse:
+def entry_point(req: func.HttpRequest) -> func.HttpResponse:
     logging.info('Python HTTP trigger function processed a request.')
     sentence = req.params.get('sentence')
     
