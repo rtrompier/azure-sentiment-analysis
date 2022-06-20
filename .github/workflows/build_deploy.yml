@@ -1,9 +1,9 @@
 on: push
-name: Build & Deploy
+name: Build & Tests
 
 jobs:
-  build-and-deploy:
-    name: Build & Deploy
+  build-and-tests:
+    name: Build & Tests
     runs-on: ubuntu-latest
 
     steps:
