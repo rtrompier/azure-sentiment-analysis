@@ -1,4 +1,3 @@
-import string
 import unittest
 import json
 import azure.functions as func
