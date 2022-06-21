@@ -49,5 +49,7 @@ jobs:
           app-name: azure-sentiment-analysis
           package: .
           publish-profile: ${{ steps.fncapp.outputs.pubprofile }}
+          scm-do-build-during-deployment: true
+          enable-oryx-build: true
       
       
