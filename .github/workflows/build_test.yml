@@ -1,0 +1,24 @@
+on: push
+name: Build & Tests
+
+jobs:
+  build-and-tests:
+    name: Build & Tests
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@main
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: 3.9
+
+      - name: Install Dependencies
+        run: pip install -r requirements.txt
+
+      - name: Tests
+        run: python3 -m unittest discover
+      
+      

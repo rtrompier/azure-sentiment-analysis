@@ -1,14 +1,19 @@
-on: push
-name: Build & Tests
+on: workflow_dispatch
+name: Deploy
 
 jobs:
-  build-and-tests:
-    name: Build & Tests
+  deploy:
+    name: Deploy
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout
         uses: actions/checkout@main
+
+      - name: Azure Login
+        uses: azure/login@v1
+        with:
+          creds: '{"clientId":"${{ secrets.AZURE_AD_CLIENT_ID }}","clientSecret":"${{ secrets.AZURE_AD_CLIENT_SECRET }}","subscriptionId":"${{ secrets.AZURE_SUBSCRIPTION_ID }}","tenantId":"${{ secrets.AZURE_AD_TENANT_ID }}"}'
 
       - name: Set up Python
         uses: actions/setup-python@v4
@@ -18,7 +23,7 @@ jobs:
       - name: Install Dependencies
         run: pip install -r requirements.txt
 
-      - name: Tests
-        run: python3 -m unittest discover
+      - name: Deploy
+        run: func azure functionapp publish azure-sentiment-analysis
       
       
