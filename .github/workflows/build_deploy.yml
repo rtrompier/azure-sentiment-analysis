@@ -10,11 +10,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@main
 
-      - name: Azure Login
-        uses: azure/login@v1
-        with:
-          creds: '{"clientId":"${{ secrets.AZURE_AD_CLIENT_ID }}","clientSecret":"${{ secrets.AZURE_AD_CLIENT_SECRET }}","subscriptionId":"${{ secrets.AZURE_SUBSCRIPTION_ID }}","tenantId":"${{ secrets.AZURE_AD_TENANT_ID }}"}'
-
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
@@ -30,10 +25,10 @@ jobs:
       #     pip install -r requirements.txt --target=".python_packages/lib/site-packages"
       #     popd
 
-      - name: 'Login to Azure'
+      - name: Azure Login
         uses: azure/login@v1
         with:
-          creds: ${{ secrets.AZURE_RBAC_CREDENTIALS }}
+          creds: '{"clientId":"${{ secrets.AZURE_AD_CLIENT_ID }}","clientSecret":"${{ secrets.AZURE_AD_CLIENT_SECRET }}","subscriptionId":"${{ secrets.AZURE_SUBSCRIPTION_ID }}","tenantId":"${{ secrets.AZURE_AD_TENANT_ID }}"}'
           enable-AzPSSession: true
 
       - name: 'Fetching Azure Functions Publishing Profile'
